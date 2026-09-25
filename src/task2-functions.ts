@@ -36,5 +36,8 @@ export function removeBook(catalog: Catalog, id: string): Catalog {
 //   - id (string): идентификатор искомой книги
 // Возвращает: объект Book, если книга найдена, или undefined, если её нет
 export function getBook(catalog: Catalog, id: string): Book | undefined {
- return catalog[id];
+ if (id in catalog) {
+    return catalog[id];
+  }
+  return undefined;
 }
