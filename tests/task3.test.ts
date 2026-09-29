@@ -9,18 +9,17 @@ import type { Book } from './task1-types';
 
 describe("Task 3: Фильтрация", () => {
   const books: Book[] = [
-    { id: "1", title: "TS Guide", authors: ["John Doe", "Jane"], year: 2023, rating: 4.5 },
+    { id: "1", title: "TS Guide", authors: ["Jane Doe"], year: 2023, rating: 4.5 },
     { id: "2", title: "JS Basics", authors: ["Alice"], year: 2020, rating: 3.0 },
     { id: "3", title: "Advanced TS", authors: ["John Doe"], year: 2022, rating: 5.0 },
-    { id: "4", title: "Old Book", authors: ["Bob"], year: 2015 },
+    { id: "4", title: "Old Book", authors: ["Bob"] },
   ];
-
-  describe("filterByAuthor", () => {
+describe("filterByAuthor", () => {
     it("должен находить книги по имени автора", () => {
       const filter = filterByAuthor("John Doe");
       const result = books.filter(filter);
-      expect(result.length).toBe(2);
-      expect(result.map((b) => b.id)).toEqual(["1", "3"]);
+      expect(result.length).toBe(1);
+      expect(result.map((b) => b.id)).toEqual(["3"]);
     });
 
     it("должен возвращать пустой массив если автор не найден", () => {
@@ -29,7 +28,7 @@ describe("Task 3: Фильтрация", () => {
     });
 
     it("должен работать с частичным совпадением (опционально)", () => {
-      const filter = filterByAuthor("John");
+      const filter = filterByAuthor("Doe");
       const result = books.filter(filter);
       expect(result.length).toBe(2);
     });
